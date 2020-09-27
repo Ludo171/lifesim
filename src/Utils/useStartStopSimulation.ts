@@ -17,5 +17,5 @@ export const useStartStopSimulation = (
       setCells(computeNextStep);
     }, stepInterval);
     return () => clearInterval(interval);
-  }, [isRunning]);
+  }, [isRunning, setCells, setCountSteps, stepInterval]);
 };
