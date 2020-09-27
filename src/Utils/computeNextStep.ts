@@ -19,9 +19,9 @@ export const computeNextStep = (
       let count = 0;
       neighbors.forEach((n) => {
         if (
-          i + n[0] > 0 &&
+          i + n[0] >= 0 &&
           i + n[0] < cellsStates.length &&
-          j + n[1] > 0 &&
+          j + n[1] >= 0 &&
           j + n[1] < cellsStates[0].length
         ) {
           count += cellsStates[i + n[0]][j + n[1]];
