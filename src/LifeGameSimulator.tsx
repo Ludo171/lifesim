@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from "./Buttons/Button";
 import GridCanvas from "./GridCanvas/GridCanvas";
 import Header from "./Header/Header";
+import { generateStartPopulation } from "./Utils/generateStartPopulation";
 
 const StyledPageBackground = styled.div`
   height: 100%;
@@ -34,13 +35,24 @@ const StyledCountDisplay = styled.div`
 `;
 
 export const LifeGameSimulator: React.FC<{}> = () => {
+  const PARAMS = {
+    startPopulation: 320,
+    nRows: 40,
+    nCols: 80,
+    stepInterval: 200,
+  };
+
+  const [cells, setCells] = useState(
+    generateStartPopulation(PARAMS.startPopulation, PARAMS.nRows, PARAMS.nCols)
+  );
+
   const [countSteps, setCountSteps] = useState(0);
 
   return (
     <StyledPageBackground className="MainApp">
       <Header title="Life Game Simulator" />
 
-      <GridCanvas />
+      <GridCanvas cellsStates={cells} />
 
       <StyledCountDisplay>
         <span>Generation # {countSteps}</span>
@@ -50,7 +62,16 @@ export const LifeGameSimulator: React.FC<{}> = () => {
         <Button
           label="New Population"
           isDisabled={false}
-          onClick={() => console.log("Click New Pop")}
+          onClick={() => {
+            setCells(
+              generateStartPopulation(
+                PARAMS.startPopulation,
+                PARAMS.nRows,
+                PARAMS.nCols
+              )
+            );
+            console.log("New Pop !");
+          }}
         />
         <Button
           label="Start & Stop"

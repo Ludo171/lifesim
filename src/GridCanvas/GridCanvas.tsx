@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
+import { useGridCanvas } from "./useGridCanvas";
 
 const StyledGridCanvas = styled.div`
   font-weight: bold;
@@ -9,10 +10,12 @@ const StyledGridCanvas = styled.div`
   font-size: xxx-large;
 `;
 
-interface IProps {}
+interface IProps {
+  cellsStates: Array<Array<number>>;
+}
 
-const GridCanvas: React.FC<IProps> = ({}: IProps) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const GridCanvas: React.FC<IProps> = ({ cellsStates }: IProps) => {
+  const { canvasRef } = useGridCanvas(cellsStates);
 
   return (
     <StyledGridCanvas>
@@ -28,7 +31,5 @@ const GridCanvas: React.FC<IProps> = ({}: IProps) => {
     </StyledGridCanvas>
   );
 };
-
-GridCanvas.defaultProps = {};
 
 export default GridCanvas;
