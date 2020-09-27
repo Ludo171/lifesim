@@ -5,6 +5,7 @@ import GridCanvas from "./GridCanvas/GridCanvas";
 import Header from "./Header/Header";
 import { computeNextStep } from "./Utils/computeNextStep";
 import { generateStartPopulation } from "./Utils/generateStartPopulation";
+import { useStartStopSimulation } from "./Utils/useStartStopSimulation";
 
 const StyledPageBackground = styled.div`
   height: 100%;
@@ -47,7 +48,15 @@ export const LifeGameSimulator: React.FC<{}> = () => {
     generateStartPopulation(PARAMS.startPopulation, PARAMS.nRows, PARAMS.nCols)
   );
 
+  const [isRunning, setIsRunning] = useState(false);
   const [countSteps, setCountSteps] = useState(0);
+
+  useStartStopSimulation(
+    PARAMS.stepInterval,
+    isRunning,
+    setCells,
+    setCountSteps
+  );
 
   return (
     <StyledPageBackground className="MainApp">
@@ -77,7 +86,10 @@ export const LifeGameSimulator: React.FC<{}> = () => {
         <Button
           label="Start & Stop"
           isDisabled={false}
-          onClick={() => console.log("Click Start Stop")}
+          onClick={() => {
+            console.log("Click Start Stop");
+            setIsRunning(!isRunning);
+          }}
         />
         <Button
           label="Next Step"
