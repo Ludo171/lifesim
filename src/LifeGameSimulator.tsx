@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from "./Buttons/Button";
 import GridCanvas from "./GridCanvas/GridCanvas";
 import Header from "./Header/Header";
+import { computeNextStep } from "./Utils/computeNextStep";
 import { generateStartPopulation } from "./Utils/generateStartPopulation";
 
 const StyledPageBackground = styled.div`
@@ -81,7 +82,10 @@ export const LifeGameSimulator: React.FC<{}> = () => {
         <Button
           label="Next Step"
           isDisabled={false}
-          onClick={() => console.log("Click Next Step")}
+          onClick={() => {
+            console.log("Click Next Step");
+            setCells(computeNextStep(cells));
+          }}
         />
       </StyledButtonsBar>
     </StyledPageBackground>
