@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Button from "./Buttons/Button";
 import GridCanvas from "./GridCanvas/GridCanvas";
 import Header from "./Header/Header";
 
@@ -46,11 +47,21 @@ export const LifeGameSimulator: React.FC<{}> = () => {
       </StyledCountDisplay>
 
       <StyledButtonsBar>
-        <button>New Population</button>
-
-        <button>Start & Stop</button>
-
-        <button>Next Step</button>
+        <Button
+          label="New Population"
+          isDisabled={false}
+          onClick={() => console.log("Click New Pop")}
+        />
+        <Button
+          label="Start & Stop"
+          isDisabled={false}
+          onClick={() => console.log("Click Start Stop")}
+        />
+        <Button
+          label="Next Step"
+          isDisabled={false}
+          onClick={() => console.log("Click Next Step")}
+        />
       </StyledButtonsBar>
     </StyledPageBackground>
   );
