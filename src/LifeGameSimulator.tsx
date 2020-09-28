@@ -60,7 +60,7 @@ export const LifeGameSimulator: React.FC<{}> = () => {
 
   return (
     <StyledPageBackground className="MainApp">
-      <Header title="Life Game Simulator" />
+      <Header title="Life Game Simulator 28/09" />
 
       <GridCanvas cellsStates={cells} />
 
